@@ -1,0 +1,14 @@
+{
+  "name": "label-detectives",
+  "version": "1.0.0",
+  "description": "Responsive prototype website for allergy-aware label scanning.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "preview": "npm run start"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

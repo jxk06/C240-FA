@@ -10,4 +10,11 @@ A responsive frontend prototype website for the "Label Detectives" allergy-safe 
 
 ## How to view
 
-Open `index.html` in a browser to view the responsive product website.
+Install dependencies and start the site locally:
+
+```bash
+npm install
+npm run start
+```
+
+Then open `http://localhost:3000` in your browser.

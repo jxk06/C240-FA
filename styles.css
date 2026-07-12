@@ -8,13 +8,17 @@
     --bg: #f8fafc;
     --surface: #ffffff;
     --surface-strong: #1f2937;
+    --surface-soft: #f8fafc;
     --text: #111827;
     --muted: #6b7280;
     --primary: #2563eb;
     --primary-strong: #1d4ed8;
     --accent: #f59e0b;
     --danger: #dc2626;
+    --border: rgba(148, 163, 184, 0.24);
     --shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.06);
+    --shadow-strong: 0 28px 70px rgba(15, 23, 42, 0.12);
 }
 
 * {
@@ -31,15 +35,21 @@ body {
     background:
         radial-gradient(
             circle at top right,
-            rgba(37, 99, 235, 0.1),
+            rgba(37, 99, 235, 0.12),
             transparent 30%
         ),
         radial-gradient(
             circle at bottom left,
-            rgba(245, 158, 11, 0.08),
+            rgba(245, 158, 11, 0.09),
             transparent 24%
         ),
-        var(--bg);
+        linear-gradient(180deg, #fcfdff 0%, var(--bg) 100%);
+    color: var(--text);
+}
+
+::selection {
+    background: rgba(37, 99, 235, 0.2);
+    color: var(--text);
 }
 
 img {
@@ -50,12 +60,24 @@ img {
 a {
     color: inherit;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 button,
 input,
 textarea {
     font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+input:focus,
+textarea:focus,
+button:focus-visible {
+    outline: 2px solid rgba(37, 99, 235, 0.25);
+    outline-offset: 2px;
 }
 
 .container {
@@ -68,8 +90,9 @@ textarea {
     top: 0;
     z-index: 20;
     backdrop-filter: blur(16px);
-    background: rgba(248, 250, 252, 0.86);
-    border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+    background: rgba(248, 250, 252, 0.9);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .header-inner {
@@ -86,6 +109,10 @@ textarea {
     letter-spacing: -0.02em;
 }
 
+.brand:hover {
+    color: var(--primary-strong);
+}
+
 .main-nav {
     display: flex;
     gap: 1.75rem;
@@ -95,6 +122,28 @@ textarea {
 .footer-nav a {
     color: var(--text);
     font-weight: 500;
+    position: relative;
+    padding-bottom: 0.2rem;
+}
+
+.main-nav a::after,
+.footer-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--primary);
+    transition: width 0.2s ease;
+}
+
+.main-nav a:hover::after,
+.footer-nav a:hover::after,
+.main-nav a:focus-visible::after,
+.footer-nav a:focus-visible::after {
+    width: 100%;
 }
 
 .nav-toggle {
@@ -118,6 +167,11 @@ textarea {
 
 .section {
     padding: 5.5rem 0;
+    position: relative;
+}
+
+.section[id] {
+    scroll-margin-top: 5.5rem;
 }
 
 .hero {
@@ -147,6 +201,7 @@ textarea {
     font-size: clamp(2.5rem, 1.8rem + 2vw, 3.75rem);
     margin: 1rem 0 1rem;
     line-height: 1.05;
+    text-wrap: balance;
 }
 
 .hero-copy p,
@@ -176,14 +231,17 @@ textarea {
     padding: 0.95rem 1.8rem;
     border: 1px solid transparent;
     font-weight: 700;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.12);
     transition:
         transform 0.2s ease,
+        box-shadow 0.2s ease,
         background-color 0.2s ease,
         border-color 0.2s ease;
 }
 
 .btn:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.16);
 }
 
 .btn-primary {
@@ -191,10 +249,19 @@ textarea {
     color: #fff;
 }
 
+.btn-primary:hover {
+    background: var(--primary-strong);
+}
+
 .btn-secondary {
     background: #fff;
     color: var(--primary-strong);
     border-color: rgba(37, 99, 235, 0.16);
+}
+
+.btn-secondary:hover {
+    background: #f8fbff;
+    border-color: rgba(37, 99, 235, 0.24);
 }
 
 .badge-row {
@@ -204,10 +271,12 @@ textarea {
 }
 
 .badge-row div {
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.88);
     border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: 1.25rem;
     padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(8px);
 }
 
 .badge-row strong {
@@ -219,13 +288,13 @@ textarea {
     background:
         radial-gradient(
             circle at top left,
-            rgba(37, 99, 235, 0.15),
+            rgba(37, 99, 235, 0.14),
             transparent 40%
         ),
-        #ffffff;
-    border: 1px solid rgba(148, 163, 184, 0.16);
+        linear-gradient(145deg, #ffffff 0%, #f9fbff 100%);
+    border: 1px solid var(--border);
     border-radius: 2rem;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-strong);
     padding: 2rem;
 }
 
@@ -355,11 +424,29 @@ textarea {
 .about-card,
 .demo-panel,
 .demo-result {
-    background: #ffffff;
+    background: linear-gradient(145deg, #ffffff 0%, #fbfdff 100%);
     border: 1px solid rgba(148, 163, 184, 0.18);
     border-radius: 1.75rem;
     padding: 1.75rem;
-    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+    box-shadow: var(--shadow-soft);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.step-card:hover,
+.feature-card:hover,
+.audience-card:hover,
+.about-card:hover,
+.demo-panel:hover,
+.demo-result:hover,
+.allergy-card:hover,
+.settings-card:hover,
+.scan-result:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: rgba(37, 99, 235, 0.2);
 }
 
 .step-card {
@@ -403,7 +490,7 @@ textarea {
 }
 
 .about-grid {
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr 1.5fr;
 }
 
 .about-list {
@@ -441,16 +528,47 @@ textarea {
 }
 
 .demo-panel input,
-.demo-panel textarea {
+.demo-panel textarea,
+.allergy-form input {
     border: 1px solid rgba(148, 163, 184, 0.35);
     border-radius: 1rem;
-    padding: 1rem;
-    background: #f8fafc;
+    padding: 0.95rem 1.1rem;
+    background: #ffffff;
+    color: var(--text);
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
     resize: vertical;
+}
+
+.demo-panel input:focus,
+.demo-panel textarea:focus,
+.allergy-form input:focus {
+    border-color: rgba(37, 99, 235, 0.38);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    transform: translateY(-1px);
+}
+
+.demo-panel input::placeholder,
+.allergy-form input::placeholder {
+    color: #94a3b8;
 }
 
 .input-group {
     margin-bottom: 1rem;
+}
+
+.allergy-input-group {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.allergy-input-group input {
+    flex: 1;
+    margin-bottom: 0;
 }
 
 .demo-actions {
@@ -489,9 +607,9 @@ textarea {
 }
 
 .site-footer {
-    border-top: 1px solid rgba(148, 163, 184, 0.16);
+    border-top: 1px solid var(--border);
     padding: 2rem 0;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
 }
 
 .footer-inner {
@@ -509,11 +627,11 @@ textarea {
 }
 
 .app-shell {
-    background: #ffffff;
+    background: linear-gradient(145deg, #ffffff 0%, #f9fbff 100%);
     border: 1px solid rgba(148, 163, 184, 0.18);
     border-radius: 2rem;
     overflow: hidden;
-    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    box-shadow: var(--shadow-strong);
 }
 
 .app-tabs {
@@ -531,17 +649,24 @@ textarea {
     padding: 0.9rem 1rem;
     color: var(--muted);
     font-weight: 700;
-    cursor: pointer;
     transition:
         background-color 0.2s ease,
         border-color 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.tab-button:hover {
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary-strong);
+    transform: translateY(-1px);
 }
 
 .tab-button.active {
     background: var(--primary);
     border-color: rgba(37, 99, 235, 0.18);
     color: #fff;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.16);
 }
 
 .tab-panel {
@@ -574,6 +699,7 @@ textarea {
     background: #f8fafc;
     border-radius: 1.25rem;
     border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
 }
 
 .allergy-form {
@@ -603,7 +729,7 @@ textarea {
     color: var(--muted);
     padding: 1.5rem 1rem;
     border-radius: 1.25rem;
-    background: rgba(248, 250, 252, 0.9);
+    background: rgba(248, 250, 252, 0.95);
     border: 1px dashed rgba(148, 163, 184, 0.3);
 }
 
@@ -688,10 +814,11 @@ textarea {
 }
 
 .settings-card {
-    background: #f8fafc;
+    background: linear-gradient(145deg, #f8fafc 0%, #eef4ff 100%);
     border-radius: 1.5rem;
     padding: 1.5rem;
     border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.04);
 }
 
 .status-ok {

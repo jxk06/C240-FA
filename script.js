@@ -1,56 +1,218 @@
-const navToggle = document.querySelector('.nav-toggle');
-const mainNav = document.querySelector('.main-nav');
-const scanButton = document.getElementById('scan-button');
-const resultBody = document.getElementById('result-body');
+const navToggle = document.querySelector(".nav-toggle");
+const mainNav = document.querySelector(".main-nav");
 
-navToggle?.addEventListener('click', () => {
-  mainNav?.classList.toggle('open');
+navToggle?.addEventListener("click", () => {
+    mainNav?.classList.toggle("open");
 });
 
-const scanData = {
-  allergens: ['peanuts', 'dairy', 'gluten', 'hazelnuts', 'whey', 'casein', 'soy', 'egg'],
-  explanations: {
-    whey: 'Whey is a milk protein, which is unsafe for dairy allergies.',
-    casein: 'Casein is a milk-derived protein often hidden in products labeled as natural flavor.',
-    hazelnuts: 'Hazelnuts are tree nuts and may cause nut allergy reactions.',
-    gluten: 'Gluten appears in ingredients like wheat, barley, or malt extract.',
-    peanuts: 'Peanuts are a common allergen and often appear under multiple names.',
-  }
-};
+const API_BASE_URL = "https://c240-fa-backend.onrender.com";
 
-scanButton?.addEventListener('click', () => {
-  const allergyInput = document.getElementById('allergy-input');
-  const labelInput = document.getElementById('label-input');
-  const allergies = allergyInput?.value.toLowerCase().split(',').map(item => item.trim()).filter(Boolean) || [];
-  const text = labelInput?.value.toLowerCase() || '';
+const allergyList = document.getElementById("allergy-list");
+const addAllergyForm = document.getElementById("add-allergy-form");
+const newAllergyInput = document.getElementById("new-allergy-input");
+const apiFeedback = document.getElementById("api-feedback");
+const backendStatus = document.getElementById("backend-status");
+const botpressFeedback = document.getElementById("botpress-feedback");
+const openBotpressButton = document.getElementById("open-botpress-button");
 
-  const found = scanData.allergens.filter(ingredient => text.includes(ingredient));
-  const matched = found.filter(item => allergies.some(allergy => item.includes(allergy) || allergy.includes(item)));
+const tabs = document.querySelectorAll(".tab-button");
+const panels = document.querySelectorAll(".tab-panel");
 
-  resultBody.innerHTML = '';
+tabs.forEach((button) => {
+    button.addEventListener("click", () => {
+        tabs.forEach((tab) => tab.classList.remove("active"));
+        panels.forEach((panel) => panel.classList.remove("active"));
 
-  if (matched.length > 0) {
-    const heading = document.createElement('p');
-    heading.innerHTML = `<strong>Detected:</strong> ${matched.length} potential allergen${matched.length > 1 ? 's' : ''}`;
-    const list = document.createElement('ul');
+        button.classList.add("active");
+        const tabName = button.dataset.tab;
+        document.getElementById(`${tabName}-tab`)?.classList.add("active");
 
-    matched.forEach(item => {
-      const li = document.createElement('li');
-      const explanation = scanData.explanations[item] || 'This ingredient may be unsafe for your profile.';
-      li.innerHTML = `<strong>${item}</strong> — ${explanation}`;
-      list.appendChild(li);
+        if (tabName === "chatbot") {
+            openBotpressChat();
+        }
+    });
+});
+
+async function request(path, options = {}) {
+    const response = await fetch(`${API_BASE_URL}${path}`, {
+        headers: {
+            "Content-Type":
+                options.body instanceof FormData
+                    ? undefined
+                    : "application/json",
+            ...options.headers,
+        },
+        ...options,
     });
 
-    const note = document.createElement('p');
-    note.className = 'result-note';
-    note.textContent = 'This simulated scan highlights allergens and explains hidden label risks in plain language.';
+    const data = await response.json().catch(() => ({}));
 
-    resultBody.appendChild(heading);
-    resultBody.appendChild(list);
-    resultBody.appendChild(note);
-  } else if (found.length > 0) {
-    resultBody.innerHTML = '<p><strong>Detected ingredients, but no direct matches with your profile.</strong> Review labels and allergen statements carefully.</p>';
-  } else {
-    resultBody.innerHTML = '<p><strong>No allergen matches detected in this sample text.</strong> Always verify labels in real shopping situations.</p>';
-  }
+    if (!response.ok) {
+        throw new Error(
+            data.message || `Request failed with status ${response.status}`,
+        );
+    }
+
+    return data;
+}
+
+function setFeedback(message, type = "info") {
+    apiFeedback.textContent = message;
+    apiFeedback.className = `api-feedback ${type}`;
+}
+
+function setBotpressFeedback(message, type = "info") {
+    if (!botpressFeedback) return;
+    botpressFeedback.textContent = message;
+    botpressFeedback.className = `api-feedback ${type}`;
+}
+
+function getBotpressWidget() {
+    return (
+        window.botpress ||
+        window.botpressWebChat ||
+        window.botpressWebchat ||
+        window.botpress?.webchat ||
+        window.botpress?.webChat ||
+        window.botpress?.webChatWidget
+    );
+}
+
+function openBotpressWithWidget(widget) {
+    if (typeof widget === "function") {
+        widget();
+        return true;
+    }
+
+    const actions = [
+        "open",
+        "openChat",
+        "toggle",
+        "toggleChat",
+        "show",
+        "showChat",
+        "display",
+        "bringToFront",
+    ];
+    for (const action of actions) {
+        if (typeof widget[action] === "function") {
+            widget[action]();
+            return true;
+        }
+    }
+    return false;
+}
+
+function openBotpressChat(retries = 10) {
+    const widget = getBotpressWidget();
+    if (widget && openBotpressWithWidget(widget)) {
+        setBotpressFeedback("Botpress chat opened.", "success");
+        return;
+    }
+
+    if (retries > 0) {
+        setBotpressFeedback("Waiting for Botpress widget to load...", "info");
+        window.setTimeout(() => openBotpressChat(retries - 1), 500);
+        return;
+    }
+
+    setBotpressFeedback(
+        "Botpress chat widget is not loaded yet. Please wait a moment or refresh the page.",
+        "error",
+    );
+}
+
+function renderAllergyList(allergies) {
+    allergyList.innerHTML = "";
+
+    if (!allergies.length) {
+        allergyList.innerHTML =
+            '<p class="empty-state">No allergies saved yet.</p>';
+        return;
+    }
+
+    allergies.forEach((allergy) => {
+        const item = document.createElement("div");
+        item.className = "allergy-card";
+        item.innerHTML = `
+      <div>
+        <strong>${allergy}</strong>
+      </div>
+      <button type="button" class="btn btn-secondary remove-allergy" data-allergen="${encodeURIComponent(allergy)}">Remove</button>
+    `;
+        allergyList.appendChild(item);
+    });
+}
+
+async function fetchAllergies() {
+    try {
+        const data = await request("/allergies");
+        renderAllergyList(data.allergies || []);
+        setFeedback("Allergy profile loaded.", "success");
+    } catch (error) {
+        allergyList.innerHTML =
+            '<p class="empty-state">Unable to load allergies.</p>';
+        setFeedback(error.message, "error");
+    }
+}
+
+async function checkBackendStatus() {
+    try {
+        await request("/allergies");
+        backendStatus.textContent = "Backend is reachable.";
+        backendStatus.className = "status-ok";
+    } catch (error) {
+        backendStatus.textContent =
+            "Backend is unavailable. Please check your network or API host.";
+        backendStatus.className = "status-error";
+    }
+}
+
+addAllergyForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const allergen = newAllergyInput.value.trim();
+
+    if (!allergen) {
+        setFeedback("Enter an allergy before adding.", "error");
+        return;
+    }
+
+    try {
+        const data = await request("/allergies", {
+            method: "POST",
+            body: JSON.stringify({ allergen }),
+        });
+        setFeedback(data.message || "Allergy added.", "success");
+        newAllergyInput.value = "";
+        fetchAllergies();
+    } catch (error) {
+        setFeedback(error.message, "error");
+    }
+});
+
+allergyList?.addEventListener("click", async (event) => {
+    const button = event.target.closest(".remove-allergy");
+    if (!button) return;
+
+    const allergen = decodeURIComponent(button.dataset.allergen);
+
+    try {
+        const data = await request(
+            `/allergies/${encodeURIComponent(allergen)}`,
+            {
+                method: "DELETE",
+            },
+        );
+        setFeedback(data.message || "Allergy removed.", "success");
+        fetchAllergies();
+    } catch (error) {
+        setFeedback(error.message, "error");
+    }
+});
+
+openBotpressButton?.addEventListener("click", openBotpressChat);
+
+window.addEventListener("DOMContentLoaded", () => {
+    fetchAllergies();
+    checkBackendStatus();
 });

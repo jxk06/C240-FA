@@ -1,249 +1,481 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Label Detectives</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#home">Label Detectives</a>
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a href="#solution">Solution</a>
-        <a href="#experience">Experience</a>
-        <a href="#how-it-works">How it Works</a>
-        <a href="#about">About</a>
-      </nav>
-    </div>
-  </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Label Detectives</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container header-inner">
+                <a class="brand" href="#home">Label Detectives</a>
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="main-nav" aria-label="Primary navigation">
+                    <a href="#solution">Solution</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#how-it-works">How it Works</a>
+                    <a href="#about">About</a>
+                </nav>
+            </div>
+        </header>
 
-  <main>
-    <section class="hero section" id="home">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Allergy-safe shopping, simplified</span>
-          <h1>Instantly scan food labels and spot hidden allergens before you buy.</h1>
-          <p>Designed for families, allergy-conscious shoppers, and anyone who needs a faster, safer grocery shopping experience.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#experience">Try the demo</a>
-            <a class="btn btn-secondary" href="#solution">Learn how</a>
-          </div>
-          <div class="badge-row">
-            <div>
-              <strong>3s scan simulation</strong>
-              <span>Fast, clear, and confidence-building.</span>
-            </div>
-            <div>
-              <strong>Allergy-first guidance</strong>
-              <span>Personalized to your profile.</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="mockphone">
-            <div class="phone-header">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-            </div>
-            <div class="phone-screen">
-              <div class="scan-card">
-                <div class="scan-top">
-                  <span>Scan result</span>
-                  <span class="status label-warning">Warning</span>
+        <main>
+            <section class="hero section" id="home">
+                <div class="container hero-grid">
+                    <div class="hero-copy">
+                        <span class="eyebrow"
+                            >Allergy-safe shopping, simplified</span
+                        >
+                        <h1>
+                            Instantly scan food labels and spot hidden allergens
+                            before you buy.
+                        </h1>
+                        <p>
+                            Designed for families, allergy-conscious shoppers,
+                            and anyone who needs a faster, safer grocery
+                            shopping experience.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn btn-primary" href="#experience"
+                                >Try the demo</a
+                            >
+                            <a class="btn btn-secondary" href="#solution"
+                                >Learn how</a
+                            >
+                        </div>
+                        <div class="badge-row">
+                            <div>
+                                <strong>3s scan simulation</strong>
+                                <span
+                                    >Fast, clear, and confidence-building.</span
+                                >
+                            </div>
+                            <div>
+                                <strong>Allergy-first guidance</strong>
+                                <span>Personalized to your profile.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-card">
+                        <div class="mockphone">
+                            <div class="phone-header">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                            <div class="phone-screen">
+                                <div class="scan-card">
+                                    <div class="scan-top">
+                                        <span>Scan result</span>
+                                        <span class="status label-warning"
+                                            >Warning</span
+                                        >
+                                    </div>
+                                    <p>
+                                        <strong>Hazelnuts</strong> detected in
+                                        ingredients list.
+                                    </p>
+                                    <div class="scan-list">
+                                        <div class="scan-item highlight">
+                                            Hazelnuts
+                                        </div>
+                                        <div class="scan-item">
+                                            Whey (dairy)
+                                        </div>
+                                        <div class="scan-item">
+                                            Natural flavor
+                                        </div>
+                                    </div>
+                                    <div class="scan-note">
+                                        Hidden allergens are grouped and
+                                        explained in plain language.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div>
+                                <strong>Profile</strong>
+                                <p>Peanuts, dairy, gluten</p>
+                            </div>
+                            <div>
+                                <strong>Recommended</strong>
+                                <p>Choose products without hidden allergens.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p><strong>Hazelnuts</strong> detected in ingredients list.</p>
-                <div class="scan-list">
-                  <div class="scan-item highlight">Hazelnuts</div>
-                  <div class="scan-item">Whey (dairy)</div>
-                  <div class="scan-item">Natural flavor</div>
+            </section>
+
+            <section class="section feature-section" id="solution">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="eyebrow">AI-powered approach</span>
+                        <h2>
+                            Computer vision + NLP to decode labels for
+                            allergy-safe shopping.
+                        </h2>
+                        <p>
+                            We automate the high-risk task of reading cluttered
+                            ingredient lists, so shoppers can make safer choices
+                            with less stress.
+                        </p>
+                    </div>
+                    <div class="feature-grid">
+                        <article class="feature-card">
+                            <h3>Personal allergy profiles</h3>
+                            <p>
+                                Users set their own allergen needs and get
+                                precise alerts for ingredients like whey,
+                                casein, or malt extract.
+                            </p>
+                        </article>
+                        <article class="feature-card">
+                            <h3>Hidden allergen detection</h3>
+                            <p>
+                                AI flags possible hidden sources such as dairy
+                                derivatives, tree nut cross-reactors, or
+                                gluten-containing additives.
+                            </p>
+                        </article>
+                        <article class="feature-card">
+                            <h3>Clear safety verdicts</h3>
+                            <p>
+                                Jargon-free explanations tell users why a
+                                product is unsafe and how an ingredient relates
+                                to their allergy.
+                            </p>
+                        </article>
+                    </div>
                 </div>
-                <div class="scan-note">Hidden allergens are grouped and explained in plain language.</div>
-              </div>
+            </section>
+
+            <section class="section audience-section">
+                <div class="container audience-grid">
+                    <div>
+                        <span class="eyebrow">Target audience</span>
+                        <h2>
+                            Built for families and individuals who need fast,
+                            accurate label checks.
+                        </h2>
+                        <p>
+                            Anyone managing severe allergies, caregivers
+                            shopping for allergic children, or people with
+                            strict dietary restrictions can benefit from a
+                            smarter label scan workflow.
+                        </p>
+                    </div>
+                    <div class="audience-list">
+                        <div class="audience-card">
+                            <h3>Allergy-conscious shoppers</h3>
+                            <p>
+                                Skip hidden risks and spend less time reading
+                                fine print at the grocery aisle.
+                            </p>
+                        </div>
+                        <div class="audience-card">
+                            <h3>Parents and caregivers</h3>
+                            <p>
+                                Protect children with cross-reactive or hidden
+                                allergens through better labelling insights.
+                            </p>
+                        </div>
+                        <div class="audience-card">
+                            <h3>Diet restriction travelers</h3>
+                            <p>
+                                Verify ingredients quickly whether you shop
+                                locally or from unfamiliar brands.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section how-it-works-section" id="how-it-works">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="eyebrow">How it works</span>
+                        <h2>
+                            Simulate a smarter label scan in three simple steps.
+                        </h2>
+                    </div>
+                    <div class="steps-grid">
+                        <article class="step-card">
+                            <div class="step-number">1</div>
+                            <h3>Enter your allergy profile</h3>
+                            <p>
+                                Select allergens and dietary restrictions so the
+                                system knows exactly what to flag.
+                            </p>
+                        </article>
+                        <article class="step-card">
+                            <div class="step-number">2</div>
+                            <h3>Scan or paste a label</h3>
+                            <p>
+                                Use an image or text simulation to extract
+                                ingredients instantly and identify allergens.
+                            </p>
+                        </article>
+                        <article class="step-card">
+                            <div class="step-number">3</div>
+                            <h3>Receive a safety verdict</h3>
+                            <p>
+                                Get a clear recommendation, highlighted
+                                allergens, and plain-language explanations.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section demo-section" id="experience">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="eyebrow">Live prototype</span>
+                        <h2>
+                            Manage your allergy profile and scan labels using
+                            the backend.
+                        </h2>
+                        <p>
+                            Sync allergy data with the API, upload a product
+                            label, and get a safety verdict from the scan
+                            service.
+                        </p>
+                    </div>
+
+                    <div class="app-shell">
+                        <div
+                            class="app-tabs"
+                            role="tablist"
+                            aria-label="Application sections"
+                        >
+                            <button
+                                class="tab-button active"
+                                type="button"
+                                data-tab="allergies"
+                            >
+                                Allergies
+                            </button>
+                            <button
+                                class="tab-button"
+                                type="button"
+                                data-tab="chatbot"
+                            >
+                                ChatBot
+                            </button>
+                            <button
+                                class="tab-button"
+                                type="button"
+                                data-tab="settings"
+                            >
+                                Settings
+                            </button>
+                        </div>
+
+                        <div class="tab-panel active" id="allergies-tab">
+                            <div class="panel-header">
+                                <div>
+                                    <span class="eyebrow">Allergy profile</span>
+                                    <h3>Listed Allergies</h3>
+                                </div>
+                                <p>
+                                    Allergy items are loaded from the backend
+                                    and stay in sync with your profile.
+                                </p>
+                            </div>
+
+                            <div
+                                id="allergy-list"
+                                class="allergy-list"
+                                aria-live="polite"
+                            >
+                                <p class="empty-state">Loading allergies…</p>
+                            </div>
+
+                            <form id="add-allergy-form" class="allergy-form">
+                                <label for="new-allergy-input"
+                                    >Add an allergy</label
+                                >
+                                <div class="input-group allergy-input-group">
+                                    <input
+                                        id="new-allergy-input"
+                                        type="text"
+                                        placeholder="e.g. peanuts"
+                                        autocomplete="off"
+                                    />
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary"
+                                    >
+                                        Add
+                                    </button>
+                                </div>
+                                <p class="hint">
+                                    Use the backend Add allergy endpoint to
+                                    store new items.
+                                </p>
+                            </form>
+
+                            <div
+                                id="api-feedback"
+                                class="api-feedback"
+                                aria-live="assertive"
+                            ></div>
+                        </div>
+
+                        <div class="tab-panel" id="chatbot-tab">
+                            <div class="panel-header">
+                                <div>
+                                    <span class="eyebrow">Botpress chat</span>
+                                    <h3>ChatBot</h3>
+                                </div>
+                                <p>
+                                    Open the Botpress widget and ask the
+                                    assistant to scan products, check
+                                    ingredients, or review your allergy profile.
+                                </p>
+                            </div>
+
+                            <div class="botpress-info">
+                                <p>
+                                    The embedded Botpress widget is configured
+                                    separately and provides the conversational
+                                    interface for product and allergen scanning.
+                                </p>
+                                <p class="hint">
+                                    If the widget does not appear automatically,
+                                    use the button below to open it.
+                                </p>
+                            </div>
+
+                            <div class="chat-actions">
+                                <button
+                                    id="open-botpress-button"
+                                    type="button"
+                                    class="btn btn-primary"
+                                >
+                                    Open Botpress Chat
+                                </button>
+                            </div>
+
+                            <div
+                                id="botpress-feedback"
+                                class="api-feedback"
+                                aria-live="assertive"
+                            ></div>
+                        </div>
+
+                        <div class="tab-panel" id="settings-tab">
+                            <div class="panel-header">
+                                <div>
+                                    <span class="eyebrow">Settings</span>
+                                    <h3>Backend status</h3>
+                                </div>
+                                <p>
+                                    Check whether the allergy API is reachable
+                                    and review your current session options.
+                                </p>
+                            </div>
+                            <div class="settings-card">
+                                <p>
+                                    Backend API URL:
+                                    <code
+                                        >https://c240-fa-backend.onrender.com</code
+                                    >
+                                </p>
+                                <p id="backend-status">
+                                    Checking backend status…
+                                </p>
+                                <p>
+                                    Use the Allergies tab to store and manage
+                                    your profile, and the ChatBot tab to scan
+                                    labels.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section about-section" id="about">
+                <div class="container about-grid">
+                    <div>
+                        <span class="eyebrow">Why this matters</span>
+                        <h2>
+                            A faster, more confident grocery trip for people who
+                            cannot afford a label mistake.
+                        </h2>
+                        <p>
+                            Label Detectives is a prototype website that
+                            demonstrates how AI and conversational design can
+                            make label checks less stressful and more reliable.
+                        </p>
+                        <ul class="about-list">
+                            <li>Reduces time spent reading dense packaging.</li>
+                            <li>Highlights hidden ingredient risks clearly.</li>
+                            <li>
+                                Supports allergen-aware decisions with
+                                plain-language guidance.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="about-cards">
+                        <article class="about-card">
+                            <h3>Gemini-powered vision</h3>
+                            <p>
+                                Process packaging images and extract text from
+                                cluttered labels using advanced multimodal AI.
+                            </p>
+                        </article>
+                        <article class="about-card">
+                            <h3>Botpress-friendly flow</h3>
+                            <p>
+                                Support a chat-style experience that helps users
+                                build their allergy profile and receive quick
+                                verdicts.
+                            </p>
+                        </article>
+                        <article class="about-card">
+                            <h3>Built for trust</h3>
+                            <p>
+                                Keep language simple and add context so users
+                                understand why a product may not be safe.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-inner">
+                <p>
+                    Label Detectives © 2026 · AI-assisted ingredient safety for
+                    allergy-aware shoppers.
+                </p>
+                <nav class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#how-it-works">How it Works</a>
+                    <a href="#experience">Demo</a>
+                </nav>
             </div>
-          </div>
-          <div class="card-footer">
-            <div>
-              <strong>Profile</strong>
-              <p>Peanuts, dairy, gluten</p>
-            </div>
-            <div>
-              <strong>Recommended</strong>
-              <p>Choose products without hidden allergens.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </footer>
 
-    <section class="section feature-section" id="solution">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">AI-powered approach</span>
-          <h2>Computer vision + NLP to decode labels for allergy-safe shopping.</h2>
-          <p>We automate the high-risk task of reading cluttered ingredient lists, so shoppers can make safer choices with less stress.</p>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Personal allergy profiles</h3>
-            <p>Users set their own allergen needs and get precise alerts for ingredients like whey, casein, or malt extract.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Hidden allergen detection</h3>
-            <p>AI flags possible hidden sources such as dairy derivatives, tree nut cross-reactors, or gluten-containing additives.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Clear safety verdicts</h3>
-            <p>Jargon-free explanations tell users why a product is unsafe and how an ingredient relates to their allergy.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+        <script src="script.js"></script>
 
-    <section class="section audience-section">
-      <div class="container audience-grid">
-        <div>
-          <span class="eyebrow">Target audience</span>
-          <h2>Built for families and individuals who need fast, accurate label checks.</h2>
-          <p>Anyone managing severe allergies, caregivers shopping for allergic children, or people with strict dietary restrictions can benefit from a smarter label scan workflow.</p>
-        </div>
-        <div class="audience-list">
-          <div class="audience-card">
-            <h3>Allergy-conscious shoppers</h3>
-            <p>Skip hidden risks and spend less time reading fine print at the grocery aisle.</p>
-          </div>
-          <div class="audience-card">
-            <h3>Parents and caregivers</h3>
-            <p>Protect children with cross-reactive or hidden allergens through better labelling insights.</p>
-          </div>
-          <div class="audience-card">
-            <h3>Diet restriction travelers</h3>
-            <p>Verify ingredients quickly whether you shop locally or from unfamiliar brands.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section how-it-works-section" id="how-it-works">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">How it works</span>
-          <h2>Simulate a smarter label scan in three simple steps.</h2>
-        </div>
-        <div class="steps-grid">
-          <article class="step-card">
-            <div class="step-number">1</div>
-            <h3>Enter your allergy profile</h3>
-            <p>Select allergens and dietary restrictions so the system knows exactly what to flag.</p>
-          </article>
-          <article class="step-card">
-            <div class="step-number">2</div>
-            <h3>Scan or paste a label</h3>
-            <p>Use an image or text simulation to extract ingredients instantly and identify allergens.</p>
-          </article>
-          <article class="step-card">
-            <div class="step-number">3</div>
-            <h3>Receive a safety verdict</h3>
-            <p>Get a clear recommendation, highlighted allergens, and plain-language explanations.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section demo-section" id="experience">
-      <div class="container demo-grid">
-        <div class="demo-panel">
-          <span class="eyebrow">Live prototype</span>
-          <h2>Try a simulated scan and see how hidden allergens are explained.</h2>
-          <p>Enter a sample ingredient list and preview the kind of warnings that keep you safer at the store.</p>
-          <form id="demo-form" class="demo-form">
-            <label for="allergy-input">Your allergy profile</label>
-            <div class="input-group">
-              <input id="allergy-input" type="text" placeholder="Peanuts, dairy, gluten" value="Peanuts, dairy, gluten" />
-            </div>
-            <label for="label-input">Ingredient list</label>
-            <textarea id="label-input" rows="5">Ingredients: hazelnuts, sugar, whey protein, natural flavor, salt.</textarea>
-            <div class="demo-actions">
-              <button type="button" class="btn btn-primary" id="scan-button">Scan label</button>
-              <span class="scan-time" id="scan-time">Expected: 3 seconds</span>
-            </div>
-          </form>
-        </div>
-        <div class="demo-result" aria-live="polite">
-          <div class="result-header">
-            <span>Scan output</span>
-            <span class="status label-danger">Alert</span>
-          </div>
-          <div class="result-body" id="result-body">
-            <p><strong>Detected:</strong> Dairy-related ingredient</p>
-            <ul>
-              <li><strong>Whey protein</strong> — dairy allergen</li>
-              <li><strong>Hazelnuts</strong> — possible nut cross-reactor</li>
-            </ul>
-            <p class="result-note">Why it matters: Whey is a milk protein, so this product is not safe for people with dairy allergies.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section about-section" id="about">
-      <div class="container about-grid">
-        <div>
-          <span class="eyebrow">Why this matters</span>
-          <h2>A faster, more confident grocery trip for people who cannot afford a label mistake.</h2>
-          <p>Label Detectives is a prototype website that demonstrates how AI and conversational design can make label checks less stressful and more reliable.</p>
-          <ul class="about-list">
-            <li>Reduces time spent reading dense packaging.</li>
-            <li>Highlights hidden ingredient risks clearly.</li>
-            <li>Supports allergen-aware decisions with plain-language guidance.</li>
-          </ul>
-        </div>
-        <div class="about-cards">
-          <article class="about-card">
-            <h3>Gemini-powered vision</h3>
-            <p>Process packaging images and extract text from cluttered labels using advanced multimodal AI.</p>
-          </article>
-          <article class="about-card">
-            <h3>Botpress-friendly flow</h3>
-            <p>Support a chat-style experience that helps users build their allergy profile and receive quick verdicts.</p>
-          </article>
-          <article class="about-card">
-            <h3>Built for trust</h3>
-            <p>Keep language simple and add context so users understand why a product may not be safe.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-    <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>Label Detectives © 2026 · AI-assisted ingredient safety for allergy-aware shoppers.</p>
-      <nav class="footer-nav">
-        <a href="#home">Home</a>
-        <a href="#how-it-works">How it Works</a>
-        <a href="#experience">Demo</a>
-      </nav>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-
-  <!-- Botpress chatbot -->
-  <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-  <script
-    src="https://files.bpcontent.cloud/2026/07/06/12/20260706125556-1L3ZQT9O.js"
-    defer>
-  </script>
-</body>
+        <!-- Botpress chatbot -->
+        <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+        <script src="https://files.bpcontent.cloud/2026/07/06/12/20260706125556-1L3ZQT9O.js"></script>
+    </body>
 </html>
